@@ -2,6 +2,9 @@ local plr = game:GetService("Players").LocalPlayer
 local mouse = plr:GetMouse()
 local camera = game:GetService("Workspace").CurrentCamera
 
+loadstring(game:HttpGet("https://github.com/Sw1ndlerScripts/utils/blob/main/PrintTable.lua?raw=true"))
+loadstring(game:HttpGet("https://github.com/Sw1ndlerScripts/utils/blob/main/ColorPrint.lua?raw=true"))
+
 --- bypass detections !!!
 if cloneref then
   local oldGetService
