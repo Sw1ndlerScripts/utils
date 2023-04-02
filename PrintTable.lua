@@ -80,7 +80,12 @@ getgenv().printTable = function(tbl, indent)
     for i, value in pairs(tbl) do
         if typeof(value) == 'table' then
             if tostring(i) ~= '__index' then
-                print(spaces .. '["' .. i .. '"]' .. " = { ")
+                local newIndex = i
+                if typeof(i) == 'Instance' then
+                    newIndex = i:GetFullName()
+                end
+
+                print(spaces .. '["' .. tostring(newIndex) .. '"]' .. " = { ")
                 printTable(value, indent + 4)
             end
         else
