@@ -18,20 +18,20 @@ if cloneref then
 end
 
 setreadonly(table, false)
-getgenv().table.reverse = function(tbl)
-  local len = #tbl
-  local reversed = {}
-  for i = 1, len do
-    reversed[i] = tbl[len - i + 1]
-  end
-  return reversed
+table.reverse = function(tbl)
+    local len = #tbl
+    local reversed = {}
+    for i = 1, len do
+        reversed[i] = tbl[len - i + 1]
+    end
+    return reversed
 end
+setreadonly(table, true)
 
 getgenv().teleportTo = function(destination)
-  
-   if typeof(destinationCFrame) == "Instance" then
+   if typeof(destination) == "Instance" then
        destination = destination.CFrame 
-   elseif typeof(destinationCFrame) == "Vector3" then
+   elseif typeof(destination) == "Vector3" then
        destination = CFrame.new(destination)
    end
   
@@ -65,18 +65,12 @@ getgenv().tweenTo = function(destinationCFrame, studsPerSecond)
 end
 
 
-getgenv().getClosestPlayerToMouse = function(fov, teamcheck)
-    local teamcheck = teamcheck or false    
+getgenv().getClosestPlayerToMouse = function(fov)
     local closestDistance = fov or math.huge
     local closestPlayer
     
-    for _, player in next, game:GetService("Players"):GetPlayers() do
-        local onTeam = false
-        if teamcheck and player.Team == plr.Team then
-            onTeam = true
-        end
-        
-        if player ~= plr and not(onTeam) then
+    for _, player in pairs(game:GetService("Players"):GetPlayers()) do
+        if player ~= plr then
             local character = player.Character
             if character and character:FindFirstChild("Humanoid") and character:FindFirstChild("HumanoidRootPart") and character.Humanoid.Health > 0 then
                 local screenPosition, isVisibleOnViewport = camera:WorldToViewportPoint(character.HumanoidRootPart.Position)
@@ -110,22 +104,6 @@ getgenv().getClosestPlayer = function()
     return closestPlayer
 end
 
-getgenv().printFunc = function(func)
-    for i,v in pairs(getconstants(func)) do
-        if type(v) == 'function' then
-            if islclosure(v) then
-                printFunc(v)
-            else
-                print(i, getinfo(v).name)
-            end
-        elseif type(v) == 'table' then
-            printTable(v)
-        else
-            print(i, v)
-        end
-    end
-end
-
 getgenv().distanceTo = function(pos)
     if typeof(pos) ~= "Vector3" then
         pos = pos.Position
@@ -138,7 +116,6 @@ getgenv().clipdecompile = function(path)
     setclipboard(decompile(path))
     print("Done")
 end
-
 
 getgenv().findConsts = function(func, list)
     local matches = 0
@@ -168,18 +145,8 @@ getgenv().findConsts = function(func, list)
     return false
 end
 
-getgenv().isBehindWall = function(position)
-    local ray = Ray.new(Workspace.CurrentCamera.CFrame.Position, (position - Workspace.CurrentCamera.CFrame.Position).Unit * 500)
-    local hitPart, hitPosition = Workspace:FindPartOnRay(ray, nil, false, true)
-
-    if hitPart and hitPart.Transparency < 1 then
-        return true
-    end
-    return false
-end
-
 getgenv().getScreenCenter = function()
-    local viewportSize = Workspace.CurrentCamera.ViewportSize
+    local viewportSize = camera.ViewportSize
     return Vector2.new(viewportSize.X/2, viewportSize.Y/2)
 end
 
