@@ -6,16 +6,6 @@ loadstring(game:HttpGet("https://github.com/Sw1ndlerScripts/utils/blob/main/Prin
 loadstring(game:HttpGet("https://github.com/Sw1ndlerScripts/utils/blob/main/ColorPrint.lua?raw=true"))
 
 --- bypass detections !!!
-if cloneref then
-  local oldGetService
-  oldGetService = hookmetamethod(game, "__namecall", function(self, ...)
-      local args = {...}
-      if checkcaller() and getnamecallmethod() == 'GetService' then
-          return cloneref(game.GetService(game, args[1]))
-      end    
-      return oldGetService(self, ...)
-  end)
-end
 
 setreadonly(table, false)
 table.reverse = function(tbl)
