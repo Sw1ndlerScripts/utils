@@ -2,8 +2,8 @@ local plr = game:GetService("Players").LocalPlayer
 local mouse = plr:GetMouse()
 local camera = game:GetService("Workspace").CurrentCamera
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Sw1ndlerScripts/utils/main/ColorPrint.lua"))
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Sw1ndlerScripts/utils/main/PrintTable.lua"))
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Sw1ndlerScripts/utils/main/ColorPrint.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Sw1ndlerScripts/utils/main/PrintTable.lua"))()
 
 
 setreadonly(table, false)
