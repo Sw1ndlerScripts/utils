@@ -2,10 +2,9 @@ local plr = game:GetService("Players").LocalPlayer
 local mouse = plr:GetMouse()
 local camera = game:GetService("Workspace").CurrentCamera
 
-loadstring(game:HttpGet("https://github.com/Sw1ndlerScripts/utils/blob/main/PrintTable.lua?raw=true"))
-loadstring(game:HttpGet("https://github.com/Sw1ndlerScripts/utils/blob/main/ColorPrint.lua?raw=true"))
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Sw1ndlerScripts/utils/main/ColorPrint.lua"))
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Sw1ndlerScripts/utils/main/PrintTable.lua"))
 
---- bypass detections !!!
 
 setreadonly(table, false)
 table.reverse = function(tbl)
