@@ -1,3 +1,5 @@
+repeat task.wait() until game.Players.LocalPlayer
+
 local plr = game:GetService("Players").LocalPlayer
 local mouse = plr:GetMouse()
 local camera = game:GetService("Workspace").CurrentCamera
