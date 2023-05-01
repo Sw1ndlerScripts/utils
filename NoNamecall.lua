@@ -1,3 +1,5 @@
+local plr = game.Players.LocalPlayer
+
 getgenv().getClosestPlayerNoNamecall = function()
     local closestDistance = math.huge
     local closestPlayer = nil
