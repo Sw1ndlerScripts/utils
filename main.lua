@@ -104,6 +104,7 @@ getgenv().distanceTo = function(pos)
 end
 
 getgenv().clipdecompile = function(path)
+    print("Starting decompile")
     setclipboard(decompile(path))
     print("Done")
 end
