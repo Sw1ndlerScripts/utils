@@ -5,7 +5,7 @@ local mouse = plr:GetMouse()
 local camera = game:GetService("Workspace").CurrentCamera
 
 getgenv().is_synapse_function = is_synapse_function or is_excecutor_closure
-getgenv().queue_on_teleport = syn.queue_on_teleport or queue_on_teleport
+getgenv().queue_on_teleport = (syn and syn.queue_on_teleport) or queue_on_teleport
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Sw1ndlerScripts/utils/main/ColorPrint.lua"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Sw1ndlerScripts/utils/main/PrintTable.lua"))()
