@@ -200,6 +200,17 @@ getgenv().antinamesetter = function()
     ]])
 end
 
+getgenv().getFunctions = function(script, limit)
+	local scripts = {}
+    local limit = limit or 9e9
+	functiongc(function(v)
+		if #scripts < limit and getfenv(v).script == script then
+			table.insert(scripts, v)
+		end	
+	end)
+	return scripts
+end
+
 getgenv().serverhop = function()
     local HttpService = game:GetService("HttpService")
     
