@@ -211,6 +211,15 @@ getgenv().getFunctions = function(script, limit)
 	return scripts
 end
 
+getgenv().printConnections = function(connection)
+	for i, con in pairs(getconnections(connection)) do
+		if con.Function then
+			printTable(getinfo(con.Function))
+		end
+	end
+end
+
+
 getgenv().serverhop = function()
     local HttpService = game:GetService("HttpService")
     
