@@ -4,12 +4,9 @@ local cases = {
     end,
     ['function'] = function(value)
         local funcName = getinfo(value).name or 'nil'
-        local name = 'function ' .. funcName .. '()'
+        local name = '-- function ' .. funcName .. '()'
 
-        local pointer = tostring(value)
-        pointer = pointer:sub(11, -1)
-
-        return name .. ", " .. pointer
+        return funcName .. " -- function " .. funcName .. "()"
     end,
     ['CFrame'] = function(value)
         local x = math.round(value.X)
@@ -128,7 +125,7 @@ getgenv().copyTable = function(tbl, indent)
 
 
     if firstIteration then
-        stringStack = stringStack .. "{" .. "\n"
+        stringStack = stringStack .. "tbl = {" .. "\n"
     end
     
     local indent = indent or 4
