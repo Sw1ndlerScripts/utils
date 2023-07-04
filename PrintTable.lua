@@ -21,7 +21,7 @@ local cases = {
         return 'Vector3.new(' .. tostring(x) .. ", " .. tostring(y) .. ", " .. tostring(z) .. ")"  
     end,
     ['Instance'] = function(value)
-        return value.Name .. " | "  .. value:GetFullName()
+        return value.Name .. " -- "  .. value:GetFullName()
     end,
     ['nil'] = function(value)
         return "nil"
@@ -161,3 +161,5 @@ getgenv().copyTable = function(tbl, indent)
     	setclipboard(stringStack)
     end
 end
+
+
