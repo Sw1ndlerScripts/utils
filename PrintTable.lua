@@ -160,9 +160,7 @@ getgenv().copyTable = function(tbl, indent)
         stringStack = stringStack .. string.rep(" ", indent - 4) ..  "}," .. "\n"
     else
         stringStack = stringStack .. "}"
+        print("Copied table")
+    	setclipboard(stringStack)
     end
-
-    print("Copied table")
-    setclipboard(stringStack)
 end
-
