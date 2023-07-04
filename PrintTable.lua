@@ -106,3 +106,62 @@ getgenv().printTable = function(tbl, indent)
     end
 end
 
+
+local copyIterations = 0
+local stringStack = ""
+getgenv().copyTable = function(tbl, indent)
+    local firstIteration = (indent == nil)
+
+    if indent == nil then
+        stringStack = ""
+    end
+
+    if typeof(tbl) ~= 'table' then
+        return setclipboard(stringify(tbl))
+    end
+
+    if firstIteration then
+        copyIterations = 0
+    else
+        copyIterations = copyIterations + 1
+    end
+
+
+    if firstIteration then
+        stringStack = stringStack .. "{" .. "\n"
+    end
+    
+    local indent = indent or 4
+    local spaces = string.rep(" ", indent)
+
+    for i, value in pairs(tbl) do
+        if typeof(value) == 'table' then
+            if tostring(i) ~= '__index' then
+                local newIndex = i
+                if typeof(i) == 'Instance' then
+                    newIndex = i:GetFullName()
+                end
+
+                stringStack = stringStack .. spaces .. '["' .. tostring(newIndex) .. '"]' .. " = { " .. "\n"
+                copyTable(value, indent + 4)
+            end
+        else
+            local result = spaces .. stringifyTable(i, value)
+
+            if i == #tbl then
+                stringStack = stringStack .. result .. "\n"
+            else
+                stringStack = stringStack .. result .. "," .. "\n"
+            end
+        end
+    end
+
+    if firstIteration == false then
+        stringStack = stringStack .. string.rep(" ", indent - 4) ..  "}," .. "\n"
+    else
+        stringStack = stringStack .. "}"
+    end
+
+    setclipboard(stringStack)
+end
+
